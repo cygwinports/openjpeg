@@ -1,0 +1,33 @@
+DESCRIPTION="JPEG 2000 codec"
+HOMEPAGE="http://www.openjpeg.org/"
+#SRC_URI="http://www.openjpeg.org/openjpeg_v${PV//./_}.tar.gz"
+SRC_URI="mirror://gentoo/openjpeg_v${PV//./_}.tar.gz"
+PATCH_URI="mirror://portage/media-libs/${PN}/files/${PN}-1.2-Makefile.patch"
+
+SRC_DIR="OpenJPEG_v${PV//./_}"
+
+PKG_NAMES="${PN} lib${PN}2 lib${PN}-devel"
+openjpeg_CONTENTS="usr/bin/*.exe usr/share/doc/"
+libopenjpeg2_CONTENTS="usr/bin/cygopenjpeg-2.dll"
+libopenjpeg_devel_CONTENTS="usr/include/ usr/lib/"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake \
+		SHAREDLIB='cyg$(TARGET)-$(VER_MAJOR).dll' \
+		LIBNAME='$(SHAREDLIB)' \
+		LDFLAGS='-Wl,--out-implib,lib$(TARGET).dll.a'
+
+	cygmake -C codec
+	cygmake -C indexer_JPIP
+}
+
+src_install() {
+	cd ${B}
+	dobin *.dll codec/*.exe indexer_JPIP/*.exe
+	dolib *.a
+
+	insinto /usr/include
+	doins libopenjpeg/openjpeg.h
+}
