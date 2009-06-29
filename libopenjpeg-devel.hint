@@ -1,5 +1,5 @@
 category: Graphics
-requires: cygwin libopenjpeg2
+requires: libopenjpeg2
 external-source: openjpeg
 sdesc: "JPEG 2000 codec (library development)"
 ldesc: "The OpenJPEG library is an open-source JPEG 2000 codec written 

@@ -1,5 +1,5 @@
 category: Graphics
-requires: cygwin libgcc1 libopenjpeg2 libtiff5
+requires: libgcc1 libopenjpeg2 libtiff5
 sdesc: "JPEG 2000 codec (utilities)"
 ldesc: "The OpenJPEG library is an open-source JPEG 2000 codec written 
 in C language. It has been developed in order to promote the use of 
