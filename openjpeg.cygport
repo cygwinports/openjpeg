@@ -2,7 +2,7 @@ inherit cmake
 
 NAME="openjpeg"
 VERSION=1.5.1
-RELEASE=1
+RELEASE=2
 CATEGORY="Graphics"
 SUMMARY="JPEG 2000 codec"
 DESCRIPTION="The OpenJPEG library is an open-source JPEG 2000 codec written
@@ -15,6 +15,11 @@ SRC_URI="http://openjpeg.googlecode.com/files/${P}.tar.gz"
 PATCH_URI="
 	fedora/openjpeg-1.5.1-cmake_libdir.patch
 	fedora/openjpeg-1.5.1-soname.patch
+	fedora/openjpeg-1.5.1-doxygen_timestamp.patch
+	fedora/openjpeg-1.5-r2029.patch
+	fedora/openjpeg-1.5-r2031.patch
+	fedora/openjpeg-1.5-r2032.patch
+	fedora/openjpeg-1.5-r2033.patch
 "
 
 PKG_NAMES="${PN} lib${PN}1 lib${PN}-devel"
@@ -31,3 +36,10 @@ CYGCMAKE_ARGS="
 	-DOPENJPEG_INSTALL_LIB_DIR=/usr/lib
 	-DOPENJPEG_INSTALL_DOC_DIR=/usr/share/doc/${PN}
 "
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	dosym libopenjpeg1.pc /usr/lib/pkgconfig/libopenjpeg.pc
+}
