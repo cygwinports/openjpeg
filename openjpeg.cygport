@@ -2,7 +2,7 @@ inherit cmake
 
 NAME="openjpeg"
 VERSION=1.5.2
-RELEASE=1
+RELEASE=2
 CATEGORY="Graphics"
 SUMMARY="JPEG 2000 codec"
 DESCRIPTION="The OpenJPEG library is an open-source JPEG 2000 codec written
